@@ -1,9 +1,10 @@
-# ra-components
+# About ra-components
 
-*JsonInput and JsonField for react-admin.*
+*Opensource components for react-admin.*
 
-Validating JSON in a textinput is made easy using JsonInput.  
-Also, JSON object now looks pretty in JsonField.
+Validating JSON in a textinput is made easy using `JsonInput`.  
+JSON object now looks pretty in `JsonField`.
+Data can be trimmed using `TrimField` while displaying in datagrid etc. 
 
 **Supported react-admin versions:**
 
