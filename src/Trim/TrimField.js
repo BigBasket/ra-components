@@ -19,9 +19,9 @@ class TrimField extends Component {
         return retval;
     };
 
-    const {source,text,limit = DEFAULT_LIMITCHARS, trimstr=DEFAULT_TRIMSTR, ...rest} = this.props;
+    const {source,text,limit = DEFAULT_LIMITCHARS, trimstr = DEFAULT_TRIMSTR, ...rest} = this.props;
     if (!text && !source) throw new Error(`Missing mandatory prop: text or source`);
-
+    if (isNaN(Number(limit))) throw new Error(`Invalid prop value: limit must be a number`);
     return (
         <FunctionField render={(record) => { 
             const data = text || record[source];

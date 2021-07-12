@@ -22,7 +22,7 @@ To use `ra-components` in your react-admin application:
 1. Import the necessary package(s) into your js file.
 
 ```js
-import {JsonInput,JsonField} from '@bb-tech/ra-components';
+import {JsonInput,JsonField,TrimField} from '@bb-tech/ra-components';
 ```
 
 2. Now use the regular TextInput props for JsonInput.
@@ -56,6 +56,17 @@ You can also set JSON text directly instead of using source prop.
 <JsonField json={jsonobj} label='JSON Object' />
 ```
 
+4. Any TextField with more number of characters can be limited using TrimField.
+
+```js
+<TrimField source='field' label='Trimmed Field' />
+```
+By default, this trims the value to 30 chars and appends ... to the end.
+You can customize it.
+
+```js
+<TrimField source='field' label='Trimmed Field' limit={40} trimstr='....' />
+```
 # License
 
 `ra-components` is licensed under [MIT License](./LICENSE.md), sponsored and supported by [BigBasket Tech](https://tech.bigbasket.com).
