@@ -5,7 +5,7 @@ import isEmail from 'validator/lib/isEmail';
 
 const ERRORTEXT = 'Invalid email';
 const SPLITCHAR = ',';
-
+const GROUPLABEL = 'Emails';
 export const EmailTypes = {
     SINGLE: 'ct_single',
     MULTIPLE: 'ct_multiple',
@@ -14,7 +14,7 @@ export const EmailTypes = {
 
 export default (props) => {
 
-    const {source, type = EmailTypes.SINGLE, grouplabel = 'Emails', 
+    const {source, type = EmailTypes.SINGLE, grouplabel = GROUPLABEL, 
         splitchar = SPLITCHAR, validate = [], errortext = ERRORTEXT,
         wrap=true, domains = [], ...rest} = props;
     
