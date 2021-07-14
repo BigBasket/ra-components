@@ -1,10 +1,9 @@
-# About ra-components
+# About
 
 *Opensource components for react-admin.*
-
-Validating JSON in a textinput is made easy using `JsonInput`.  
-JSON object now looks pretty in `JsonField`.
-Data can be trimmed using `TrimField` while displaying in datagrid etc. 
+- Validating JSON in a textinput is made easy using `JsonInput`.  
+- JSON object now looks pretty in `JsonField`.
+- Data can be trimmed using `TrimField` while displaying in datagrid etc. 
 
 **Supported react-admin versions:**
 
@@ -12,28 +11,26 @@ Data can be trimmed using `TrimField` while displaying in datagrid etc.
 
 # Installation
 
-Install using npm:
-
-`npm install --save @bb-tech/ra-components`
+Install using npm:  `npm install --save @bb-tech/ra-components`
 
 # Basic Usage
 
-To use `ra-components` in your react-admin application:
-
-1. Import the necessary package(s) into your js file.
+To use `ra-components` in your react-admin application, import the necessary package(s) into your js file.
 
 ```js
 import {JsonInput,JsonField,TrimField} from '@bb-tech/ra-components';
 ```
 
-2. Now use the regular TextInput props for JsonInput.
+2. Now you can use the controls in your code.
 
 ```js
 <JsonInput source='config' label='JSON Config' />
 ```
 
-This will automatically validate if the entered value is JSON or not.
-If not, JsonInput will throw an error.  
+# JsonInput
+
+`JsonInput` validates if the entered value is JSON or not.
+If entered value is not a invalid JSON, `JsonInput` will throw an error.  
 Default error message is: `Invalid JSON` and can be overridden using `errortext` prop.
 
 ```js
@@ -44,7 +41,10 @@ or use translate function:
 ```js
 <JsonInput source='config' label={translate('resources.resource_name.fields.config')} errortext={translate('myroot.validate.json')}/>
 ```
-3. Your JSON can be viewed in `show` component using JsonField.
+
+# JsonField
+
+Your JSON can be viewed in `show` component using `JsonField`.
 JSON is slightly tweaked to add enough spaces so that it fits the screen.
 And hence, it looks pretty now.
 
@@ -57,7 +57,9 @@ You can also set JSON text directly instead of using source prop.
 <JsonField json={jsonobj} label='JSON Object' />
 ```
 
-4. Any TextField with more number of characters can be limited using TrimField.
+# TrimField
+
+Any `TextField` with more number of characters can be limited using `TrimField`.
 
 ```js
 <TrimField source='field' label='Trimmed Field' />
@@ -69,7 +71,9 @@ You can customize it.
 <TrimField source='field' label='Trimmed Field' limit={40} trimstr='....' />
 ```
 
-5. EmailInput is used to validate if the entered value is an email or not.
+# EmailInput
+
+`EmailInput` is used to validate if the entered value is an email or not.
 
 ```js
 <EmailInput source='email' label='Email Address' />
@@ -80,18 +84,19 @@ You can restrict the email to a specific domain.
 <EmailInput source='email' label='Email Address' domains={['yourdomain.com']} />
 ```
 
-You can specify that it should take `,` separated email addresses.  
-Or customize it to to `;` as the separator.
+You can specify that it should take `,` separated email addresses.  Or customize it to to `;` as the separator.
+
 ```js
 <EmailInput source='email' label='Email Address' domains={['yourdomain.com']} type={EmailTypes.MULTIPLE} splitchar=';'/>
 ```
 In case of an invalid email address, you can customize the error message using `errortext` prop.
 
-Notes for EmailTypes.ARRAY
+**Notes for `EmailTypes.ARRAY`**
 - If you want to get array of email addresses, please pass type as `EmailTypes.ARRAY`.
 - By default each of `EmailInput` component is wrapped on the screen.  
 - You can pass `wrap={false}` to get each `EmailInput` one below the other.
-- `Emails` is the default label given to the array. Use `grouplabel` prop to override.
+- 'Emails' is the default label given to the array. Use `grouplabel` prop to override.
+
 # License
 
 `ra-components` is licensed under [MIT License](./LICENSE.md), sponsored and supported by [BigBasket Tech](https://tech.bigbasket.com).
