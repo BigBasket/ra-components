@@ -68,6 +68,30 @@ You can customize it.
 ```js
 <TrimField source='field' label='Trimmed Field' limit={40} trimstr='....' />
 ```
+
+5. EmailInput is used to validate if the entered value is an email or not.
+
+```js
+<EmailInput source='email' label='Email Address' />
+```
+You can restrict the email to a specific domain.
+
+```js
+<EmailInput source='email' label='Email Address' domains={['yourdomain.com']} />
+```
+
+You can specify that it should take `,` separated email addresses.  
+Or customize it to to `;` as the separator.
+```js
+<EmailInput source='email' label='Email Address' domains={['yourdomain.com']} type={EmailTypes.MULTIPLE} splitchar=';'/>
+```
+In case of an invalid email address, you can customize the error message using `errortext` prop.
+
+Notes for EmailTypes.ARRAY
+- If you want to get array of email addresses, please pass type as `EmailTypes.ARRAY`.
+- By default each of `EmailInput` component is wrapped on the screen.  
+- You can pass `wrap={false}` to get each `EmailInput` one below the other.
+- `Emails` is the default label given to the array. Use `grouplabel` prop to override.
 # License
 
 `ra-components` is licensed under [MIT License](./LICENSE.md), sponsored and supported by [BigBasket Tech](https://tech.bigbasket.com).

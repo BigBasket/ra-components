@@ -24,7 +24,7 @@ export default (props) => {
         root: {
           display: 'flex',
           flexDirection: 'row',
-          flexWrap: wrap?'wrap':'inherit',
+          flexWrap: 'wrap',
         },
         form: {
           width: '100%',
@@ -71,7 +71,7 @@ export default (props) => {
 
     let retComponent = null;
     const errorobj = {message: errortext};
-    const classes = useIteratorStyle();
+    const classes = wrap ? useIteratorStyle() : undefined;
     validate.push(validateEmail);
     
     if (type === EmailTypes.ARRAY){
