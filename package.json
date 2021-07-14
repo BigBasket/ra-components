@@ -1,6 +1,6 @@
 {
   "name": "@bb-tech/ra-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Additional opensource components for react-admin",
   "author": "BigBasket Tech",
   "repository": "BigBasket/ra-components",
@@ -18,7 +18,8 @@
     "ra-trim",
     "ra-trim-field",
     "ra-trimfield",
-    "ra"
+    "ra",
+    "ra-email"
   ],
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
@@ -31,10 +32,14 @@
     "start": "rollup -c -w",
     "prepare": "npm run build"
   },
+  "dependencies": {
+    "validator": "13.6.0"
+  },
   "peerDependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-admin": "^3.0.0"
+    "react-admin": "^3.0.0",
+    "@material-ui/core": "4.11.4"
   },
   "devDependencies": {
     "react-scripts": "^3.4.1",
