@@ -37,36 +37,41 @@ Default error message is: `Invalid JSON` and can be overridden using `errortext`
 <JsonInput source='config' label='JSON Config' errortext='Enter a valid JSON'/>
 ```
 or use translate function:
-
 ```js
 <JsonInput source='config' label={translate('resources.resource_name.fields.config')} errortext={translate('myroot.validate.json')}/>
 ```
 
 # JsonField
 
-Your JSON can be viewed in `show` component using `JsonField`.
-JSON is slightly tweaked to add enough spaces so that it fits the screen.
-And hence, it looks pretty now.
-
+Your JSON can be viewed in a tree structure using `JsonField` .
 ```js
 <JsonField source='config' label='JSON Config' />
 ```
-You can also set JSON text directly instead of using source prop.
 
+You can also set JSON text directly instead of using source prop.
 ```js
 <JsonField json={jsonobj} label='JSON Object' />
+```
+
+If `treeview` is `false`, JSON is viewed as text, i.e., tweaked to add enough spaces so that it fits the screen.
+```js
+<JsonField json={jsonobj} label='JSON Object' treeview={false}/>
+```
+
+Also, if `togglelabel` is set, a button is shown additionally to toggle between `tree` and `text`.
+```js
+<JsonField json={jsonobj} label='JSON Object' togglelabel='Toggle-View'/>
 ```
 
 # TrimField
 
 Any `TextField` with more number of characters can be limited using `TrimField`.
-
 ```js
 <TrimField source='field' label='Trimmed Field' />
 ```
 By default, this trims the value to 30 chars and appends ... to the end.
-You can customize it.
 
+You can customize it.
 ```js
 <TrimField source='field' label='Trimmed Field' limit={40} trimstr='....' />
 ```
@@ -74,21 +79,20 @@ You can customize it.
 # EmailInput
 
 `EmailInput` is used to validate if the entered value is an email or not.
-
 ```js
 <EmailInput source='email' label='Email Address' />
 ```
-You can restrict the email to a specific domain.
 
+You can restrict the email to a specific domain.
 ```js
 <EmailInput source='email' label='Email Address' domains={['yourdomain.com']} />
 ```
 
-You can specify that it should take `,` separated email addresses.  Or customize it to to `;` as the separator.
-
+MULTIPLE allows it to take comma separated email addresses.  Or you can specify a separator.
 ```js
 <EmailInput source='email' label='Email Address' domains={['yourdomain.com']} type={EmailTypes.MULTIPLE} splitchar=';'/>
 ```
+
 In case of an invalid email address, you can customize the error message using `errortext` prop.
 
 **Notes for `EmailTypes.ARRAY`**
