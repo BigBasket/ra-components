@@ -22,7 +22,6 @@ import {JsonInput,JsonField,TrimField} from '@bb-tech/ra-components';
 ```
 
 2. Now you can use the controls in your code.
-
 ```js
 <JsonInput source='config' label='JSON Config' />
 ```
@@ -32,15 +31,19 @@ import {JsonInput,JsonField,TrimField} from '@bb-tech/ra-components';
 `JsonInput` validates if the entered value is JSON or not.
 If entered value is not a invalid JSON, `JsonInput` will throw an error.  
 Default error message is: `Invalid JSON` and can be overridden using `errortext` prop.
-
 ```js
 <JsonInput source='config' label='JSON Config' errortext='Enter a valid JSON'/>
 ```
+
 or use translate function:
 ```js
 <JsonInput source='config' label={translate('resources.resource_name.fields.config')} errortext={translate('myroot.validate.json')}/>
 ```
 
+By default, `JsonInput` parses and returns the entered string as object. Instead, to send string directly, please pass `parse` prop as `false`  
+```js
+<JsonInput source='config' label='JSON Config' parse={false}/>
+```
 # JsonField
 
 Your JSON can be viewed in a tree structure using `JsonField` .
