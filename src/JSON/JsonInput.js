@@ -3,13 +3,19 @@ import React, { Component } from "react";
 
 const DEFAULT_ERRORTEXT = 'Invalid JSON';
 
-function parseJSON (json) {
+const parseFunction = (json) => {
+  let retval = json;
+  try {retval= JSON.parse(json);}
+  catch (e){}
+  finally { return retval;}
+}
+
+const parseJSON = (json) => {
   let retval = false;
   try {if (typeof JSON.parse(json) === 'object') retval = true;}
   catch (e){}
   finally {return retval;}
 }
-
 class JsonInput extends Component {
   constructor(props) {
     super();
@@ -17,7 +23,7 @@ class JsonInput extends Component {
   }
 
   render() {
-    const {validate = [],errortext = DEFAULT_ERRORTEXT,resettable,multiline = true, ...rest} = this.props;
+    const {validate = [],errortext = DEFAULT_ERRORTEXT,resettable,multiline = true,parse=true, ...rest} = this.props;
     const errorobj = {message: errortext};
 
     const validateJSON = (value) => {
@@ -37,6 +43,7 @@ class JsonInput extends Component {
     validate.push(validateJSON);
     rest.validate = validate;
     rest.format = formatJSON;
+    if (parse) rest.parse = parseFunction;
     if (multiline) rest.multiline = true;
     return (
         <TextInput {...rest} />

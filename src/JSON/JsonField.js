@@ -1,34 +1,21 @@
-import { FunctionField } from 'react-admin';
-import React, { Component } from "react";
+import JSONTree from 'react-json-tree';
+import React from "react";
+import { Button } from '@material-ui/core';
 
-class JsonField extends Component {
-  
-    constructor(props) {
-        super();
-        this.props = props;
-    }
-
-  render() {
-
-    const ViewJSON = (JsonObj) => {
-      let retval = JsonObj;
-      if (retval === JSON.stringify({})) 
-          retval = '';
-      if (retval && typeof retval === 'object')
-        retval = JSON.stringify(retval).replaceAll(/([{},:])/g, ' $1 ');
-      return retval;
-    }
-
-    let {label,source,json,...rest} = this.props;
-    if (!json && !source) throw new Error(`Missing mandatory prop: json or source`);
-    return <FunctionField render={record => {
-      const data = json || record[source];
-      if (!data) return <div></div>;
-      const retVal = <div><p></p>{label}<p></p>{ViewJSON(data)}</div>;
-      return retVal;
-      }} 
-    {...rest}/>
+  const ViewJSON = (JsonObj,treeview) => {
+    if (JsonObj === JSON.stringify({})) return '';
+    if (JsonObj && typeof JsonObj === 'object')
+      return treeview ? <JSONTree data={JsonObj}/> : JSON.stringify(JsonObj).replaceAll(/([{},:])/g, ' $1 ');
+    return '';
   }
-}
 
-export {JsonField};
+  export const JsonField = ({label,source,json,togglelabel,treeview=true,record}) => {
+    let btn;
+    const [tree,setTree] = React.useState(treeview);
+    if (!json && !source) throw new Error(`Missing mandatory prop: json or source`);
+    const data = json || record[source];
+    if (togglelabel)
+      btn = <Button variant="contained" color="primary" size="small" onClick={() => setTree(value => !tree)}>{togglelabel}</Button>;
+    const retVal = <div><p></p>{label}&nbsp;&nbsp;{btn}<p></p>{ViewJSON(data,tree)}</div>;
+    return retVal;
+  }
