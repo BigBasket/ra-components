@@ -66,6 +66,11 @@ Also, if `togglelabel` is set, a button is shown additionally to toggle between 
 <JsonField json={jsonobj} label='JSON Object' togglelabel='Toggle-View'/>
 ```
 
+If `expandlabel` and `collapselabel` are set, a button is shown additionally to toggle between `expand` and `collapse`.
+```js
+<JsonField json={jsonobj} label='JSON Object' expandlabel='Expand' collapselabel='Collapse'/>
+```
+
 # TrimField
 
 Any `TextField` with more number of characters can be limited using `TrimField`.
