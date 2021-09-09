@@ -4,6 +4,7 @@
 - Validating JSON in a textinput is made easy using `JsonInput`.  
 - JSON object now looks pretty in `JsonField`.
 - Data can be trimmed using `TrimField` while displaying in datagrid etc. 
+- Validate emails, restrict for a specific set of domains using `EmailInput`.
 
 **Supported react-admin versions:**
 
