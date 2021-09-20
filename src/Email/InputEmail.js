@@ -12,6 +12,27 @@ export const EmailTypes = {
     ARRAY: 'ct_array',
 };
 
+/**
+ * `EmailInput` is used to validate if the entered value is an email or not.
+ * @example
+ * <EmailInput source='email' label='Email Address' />
+ * 
+ * You can restrict the email to a specific domain.
+ * @example
+ * <EmailInput source='email' label='Email Address' domains={['yourdomain.com']} />
+ * 
+ * MULTIPLE allows it to take comma separated email addresses.  Or you can specify a separator.
+ * @example
+ * <EmailInput source='email' label='Email Address' domains={['yourdomain.com']} type={EmailTypes.MULTIPLE} splitchar=';'/>
+ * 
+ * In case of an invalid email address, you can customize the error message using `errortext` prop.
+ * 
+ * **Notes for `EmailTypes.ARRAY`**
+ * - If you want to get array of email addresses, please pass type as `EmailTypes.ARRAY`.
+ * - By default each of `EmailInput` component is wrapped on the screen.  
+ * - You can pass `wrap={false}` to get each `EmailInput` one below the other.
+ * - 'Emails' is the default label given to the array. Use `grouplabel` prop to override.
+ */
 export default (props) => {
 
     const {source, type = EmailTypes.SINGLE, grouplabel = GROUPLABEL, 
