@@ -22,6 +22,21 @@ class JsonInput extends Component {
     this.props = props;
   }
 
+  /**
+   * 
+   * `JsonInput` validates if the entered value is JSON or not. If entered value is not a invalid JSON, `JsonInput` will throw an error.  
+   * Default error message is: `Invalid JSON` and can be overridden using `errortext` prop.
+   * @example
+   * <JsonInput source='config' label='JSON Config' errortext='Enter a valid JSON'/>
+   * 
+   * or use translate function:
+   * @example
+   * <JsonInput source='config' label={translate('resources.resource_name.fields.config')} errortext={translate('myroot.validate.json')}/>
+   * 
+   * By default, `JsonInput` parses and returns the entered string as object. Instead, to send string directly, please pass `parse` prop as `false`  
+   * @example
+   * <JsonInput source='config' label='JSON Config' parse={false}/>
+   */
   render() {
     const {validate = [],errortext = DEFAULT_ERRORTEXT,resettable,multiline = true,parse=true, ...rest} = this.props;
     const errorobj = {message: errortext};

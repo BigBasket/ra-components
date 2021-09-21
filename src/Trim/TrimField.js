@@ -10,6 +10,17 @@ class TrimField extends Component {
       this.props = props;
     }
 
+    /**
+     * Any `TextField` with more number of characters can be limited using `TrimField`.
+     * @example
+     * <TrimField source='field' label='Trimmed Field' />
+     * 
+     * By default, this trims the value to 30 chars and appends ... to the end.
+     * You can customize it.
+     * @example
+     * <TrimField source='field' label='Trimmed Field' limit={40} trimstr='....' />
+     *
+     */
     render() {
 
     const TrimString = (str) => {

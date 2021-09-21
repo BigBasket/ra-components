@@ -5,6 +5,7 @@
 - JSON object now looks pretty in `JsonField`.
 - Data can be trimmed using `TrimField` while displaying in datagrid etc. 
 - Validate emails, restrict for a specific set of domains using `EmailInput`.
+- Button to update the values in a record (ex: approve/retry etc)  `UpdateButton`.
 
 **Supported react-admin versions:**
 
@@ -110,6 +111,33 @@ In case of an invalid email address, you can customize the error message using `
 - You can pass `wrap={false}` to get each `EmailInput` one below the other.
 - 'Emails' is the default label given to the array. Use `grouplabel` prop to override.
 
+# UpdateButton
+
+You may want to add a button to update specific column of a record.
+Example: You can add a button to Approve a post. 
+```js
+<UpdateButton resource='posts' label='Approve' source='is_approved'/>
+```
+In the above example, `is_approved` column of the curret record within `posts`, will be updated to `true`.
+
+You can pass value prop to update the source to a specific value, instead of `true`.
+```js
+<UpdateButton resource='posts' label='Approve' source='post_status' value='APPROVED' />
+```
+
+You can also update two or more columns by passing json in data.
+Ex: Approve the post and also update the status as APPROVED
+```js
+const data = {is_approved:true,post_status:'APPROVED'};
+<UpdateButton resource='posts' label='Approve' data={data} />
+```
+Note: You can send either source or data. if source is there, data is ignored.
+
+By default, `UpdateButton` merges the un-updated data and updated data and sends the whole object. If your API expects only updated data, you can turn this off using merge prop.
+```js
+const data = {is_approved:true,post_status:'APPROVED'};
+<UpdateButton resource='posts' label='Approve' data={data} merge={false}/>
+```
 # License
 
 `ra-components` is licensed under [MIT License](./LICENSE.md), sponsored and supported by [BigBasket Tech](https://tech.bigbasket.com).
