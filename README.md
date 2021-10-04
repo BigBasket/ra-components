@@ -6,10 +6,11 @@
 - Data can be trimmed using `TrimField` while displaying in datagrid etc. 
 - Validate emails, restrict for a specific set of domains using `EmailInput`.
 - Button to update the values in a record (ex: approve/retry etc)  `UpdateButton`.
+- Validate phone numbers, restrict for specific countries using `PhoneInput`
 
 **Supported react-admin versions:**
 
-* React-Admin 3.x
+React-Admin 3.x
 
 # Installation
 
@@ -110,6 +111,31 @@ In case of an invalid email address, you can customize the error message using `
 - By default each of `EmailInput` component is wrapped on the screen.  
 - You can pass `wrap={false}` to get each `EmailInput` one below the other.
 - 'Emails' is the default label given to the array. Use `grouplabel` prop to override.
+
+# PhoneInput
+
+`PhoneInput` is used to validate if the entered value is a valid phone number or not.
+```js
+<PhoneInput source='phone' label='Phone Number' />
+```
+
+You can restrict to phone numbers of specific country by using the `country` prop. Two letter ISO code should be used here.
+```js
+<PhoneInput source='phone' label='Phone Number' country='IN' />
+```
+
+MULTIPLE allows it to take comma separated phone numbers.  Or you can specify a separator.
+```js
+<PhoneInput source='phone' label='Phone Number' type={PhoneTypes.MULTIPLE} splitchar=';'/>
+```
+
+In case of an invalid phone number, you can customize the error message using `errortext` prop.
+ 
+**Notes for `PhoneTypes.ARRAY`**
+- If you want to get array of phone numbers, please pass type as `PhoneTypes.ARRAY`.
+- By default each of `PhoneInput` component is wrapped on the screen.  
+- You can pass `wrap` as `false` to get each `PhoneInput` one below the other.
+- `Phone Numbers` is the default label given to the array. Use `grouplabel` prop to override.
 
 # UpdateButton
 

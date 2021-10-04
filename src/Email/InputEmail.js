@@ -13,6 +13,7 @@ export const EmailTypes = {
 };
 
 /**
+ * 
  * `EmailInput` is used to validate if the entered value is an email or not.
  * @example
  * <EmailInput source='email' label='Email Address' />
@@ -30,8 +31,9 @@ export const EmailTypes = {
  * **Notes for `EmailTypes.ARRAY`**
  * - If you want to get array of email addresses, please pass type as `EmailTypes.ARRAY`.
  * - By default each of `EmailInput` component is wrapped on the screen.  
- * - You can pass `wrap={false}` to get each `EmailInput` one below the other.
- * - 'Emails' is the default label given to the array. Use `grouplabel` prop to override.
+ * - You can pass `wrap` as `false` to get each `EmailInput` one below the other.
+ * - `Emails` is the default label given to the array. Use `grouplabel` prop to override.
+ * 
  */
 export default (props) => {
 
@@ -75,18 +77,12 @@ export default (props) => {
     const validateEmail = (value) => {
         if (!value) return;
         let isvalid = true;
-        if (type === EmailTypes.MULTIPLE) {
-            const values = value.split(splitchar);
-            for (let i = 0; i < values.length; i++) {
-                const email = values[i].trim();
-                isvalid = checkEmail(email);
-                if (!isvalid) break;
-            }
-        } 
-        else {
-            isvalid = checkEmail(value);
+        const values = value.split(splitchar);
+        for (let i = 0; i < values.length; i++) {
+            const email = values[i].trim();
+            isvalid = checkEmail(email);
+            if (!isvalid) break;
         }
-
         return isvalid ? undefined : errorobj;
     }
 

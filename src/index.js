@@ -1,4 +1,4 @@
-export { JsonField as JsonField } from './JSON/JsonField';
+export { default as JsonField } from './JSON/JsonField';
 
 export { JsonInput as JsonInput } from './JSON/JsonInput';
 
@@ -9,3 +9,7 @@ export {default as EmailInput} from './Email/InputEmail';
 export {UpdateButton as UpdateButton} from './Action/UpdateButton';
 
 export {EmailTypes as EmailTypes} from './Email/InputEmail';
+
+export {default as PhoneInput} from './Phone/PhoneInput';
+
+export {PhoneTypes as PhoneTypes} from './Phone/PhoneInput';
