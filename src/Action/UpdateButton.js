@@ -2,6 +2,7 @@ import React from "react";
 import { useUpdate, Button } from 'react-admin';
 
 /**
+ * 
  * A button to update specific column of a record.
  * Example: You can add a button to Approve a post.
  * @example
@@ -25,6 +26,7 @@ import { useUpdate, Button } from 'react-admin';
  * @example
  * const data = {is_approved:true,post_status:'APPROVED'};
  * <UpdateButton resource='posts' label='Approve' data={data} merge={false}/>
+ * 
  */
 export const UpdateButton = ({ resource, source,value=true,data={},label='Update',merge=true,...props }) => {
     const record = props.record;

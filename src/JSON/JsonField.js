@@ -15,6 +15,7 @@ import {FunctionField} from 'react-admin';
   /**
    * 
    * Your JSON can be viewed in a tree structure using `JsonField`.
+   * 
    * @example
    *  <JsonField source='config' label='JSON Config' />
    * 
@@ -34,7 +35,7 @@ import {FunctionField} from 'react-admin';
    * @example
    * <JsonField json={jsonobj} label='JSON Object' expandlabel='Expand' collapselabel='Collapse'/>
    */
-  export const JsonField = ({label,source,json,togglelabel,expandlabel,collapselabel,treeview=true,record}) => {
+  const JsonField = ({label,source,json,togglelabel,expandlabel,collapselabel,treeview=true,record}) => {
     let treeBtn;let expandBtn;
     const [tree,setTree] = React.useState(treeview);
     const [expand,setExpand] = React.useState(false);
@@ -50,3 +51,5 @@ import {FunctionField} from 'react-admin';
     const retVal = <div><p></p>{label}&nbsp;&nbsp;{treeBtn}&nbsp;&nbsp;{expandBtn}<p></p>{ViewJSON(data,tree,expand)}</div>;
     return <FunctionField render={() => retVal } /> ;
   }
+  
+  export default JsonField;

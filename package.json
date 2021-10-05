@@ -1,6 +1,6 @@
 {
   "name": "@bb-tech/ra-components",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Additional opensource components for react-admin",
   "author": "BigBasket Tech",
   "repository": "BigBasket/ra-components",
@@ -20,7 +20,8 @@
     "ra-trim-field",
     "ra-trimfield",
     "ra",
-    "ra-email"
+    "ra-email",
+    "ra-phone"
   ],
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
@@ -29,12 +30,14 @@
     "node": ">=10.16"
   },
   "scripts": {
+    "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "build": "rollup -c",
     "start": "rollup -c -w",
     "prepare": "npm run build"
   },
   "dependencies": {
-    "validator": "13.6.0"
+    "libphonenumber-js": "^1.9.34",
+    "validator": "^13.6.0"
   },
   "peerDependencies": {
     "react": "^17.0.2",
@@ -44,12 +47,12 @@
     "react-json-tree": "0.15.0"
   },
   "devDependencies": {
-    "prettier": "2.3.2",
+    "prettier": "2.4.1",
     "react-scripts": "4.0.3",
-    "rollup": "2.56.3",
+    "rollup": "2.57.0",
     "@rollup/plugin-babel": "5.3.0",
     "@rollup/plugin-commonjs": "20.0.0",
-    "@rollup/plugin-node-resolve": "13.0.4",
+    "@rollup/plugin-node-resolve": "13.0.5",
     "@rollup/plugin-url": "6.1.0"
   },
   "files": [
