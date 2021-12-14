@@ -5,6 +5,7 @@
 - JSON object now looks pretty in `JsonField`.
 - Data can be trimmed using `TrimField` while displaying in datagrid etc. 
 - Validate emails, restrict for a specific set of domains using `EmailInput`.
+- Validate URLs, restrict for a specific set of domains using `URLInput`.
 - Button to update the values in a record (ex: approve/retry etc)  `UpdateButton`.
 - Validate phone numbers, restrict for specific countries using `PhoneInput`
 
@@ -96,12 +97,12 @@ You can customize it.
 
 You can restrict the email to a specific domain.
 ```js
-<EmailInput source='email' label='Email Address' domains={['yourdomain.com']} />
+<EmailInput source='email' domains={['yourdomain.com']} />
 ```
 
 MULTIPLE allows it to take comma separated email addresses.  Or you can specify a separator.
 ```js
-<EmailInput source='email' label='Email Address' domains={['yourdomain.com']} type={EmailTypes.MULTIPLE} splitchar=';'/>
+<EmailInput source='email' domains={['yourdomain.com']} type={EmailTypes.MULTIPLE} splitchar=';'/>
 ```
 
 In case of an invalid email address, you can customize the error message using `errortext` prop.
@@ -111,6 +112,36 @@ In case of an invalid email address, you can customize the error message using `
 - By default each of `EmailInput` component is wrapped on the screen.  
 - You can pass `wrap={false}` to get each `EmailInput` one below the other.
 - 'Emails' is the default label given to the array. Use `grouplabel` prop to override.
+
+# URLInput
+
+`URLInput` is used to validate if the entered value is a valid URL or not.
+```js
+<URLInput source='url' label='URL' />
+```
+
+You can restrict the URL to a specific domain.
+```js
+<URLInput source='url' domains={['yourdomain.com']} />
+```
+
+By default, URLInput allows only `https`. You can extend it for `http` or `ftp`.
+```js
+<URLInput source='url' domains={['yourdomain.com']} httpAllowed={true} ftpAllowed={true} />
+```
+
+If you want an API endpoint to be captured without http and domain, you can use `APIEndPoint`.
+APIEndPoint allows any string starting with `/`.
+```js
+<URLInput source='url' APIEndPoint={true} />
+```
+
+MULTIPLE allows it to take comma separated urls.  Or you can specify a separator.
+```js
+<URLInput source='url' domains={['yourdomain.com']} type={URLTypes.MULTIPLE} splitchar=';'/>
+```
+
+In case of an invalid URL, you can customize the error message using `errortext` prop.
 
 # PhoneInput
 

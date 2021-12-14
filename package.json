@@ -1,6 +1,6 @@
 {
   "name": "@bb-tech/ra-components",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Additional opensource components for react-admin",
   "author": "BigBasket Tech",
   "repository": "BigBasket/ra-components",
@@ -13,6 +13,7 @@
     "ra-json-field",
     "ra-json-view",
     "ra-json-tree",
+    "ra-urlinput",
     "jsonview",
     "jsontree",
     "react-admin",
@@ -21,7 +22,9 @@
     "ra-trimfield",
     "ra",
     "ra-email",
-    "ra-phone"
+    "ra-phone",
+    "jsoninput",
+    "urlinput"
   ],
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
@@ -36,23 +39,23 @@
     "prepare": "npm run build"
   },
   "dependencies": {
-    "libphonenumber-js": "^1.9.34",
-    "validator": "^13.6.0"
+    "libphonenumber-js": "^1.9.44",
+    "validator": "^13.7.0"
   },
   "peerDependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-admin": "^3.0.0",
     "@material-ui/core": "4.12.3",
-    "react-json-tree": "0.15.0"
+    "react-json-tree": "^0.15.1"
   },
   "devDependencies": {
-    "prettier": "2.4.1",
+    "prettier": "2.5.1",
     "react-scripts": "4.0.3",
-    "rollup": "2.57.0",
+    "rollup": "2.61.1",
     "@rollup/plugin-babel": "5.3.0",
-    "@rollup/plugin-commonjs": "20.0.0",
-    "@rollup/plugin-node-resolve": "13.0.5",
+    "@rollup/plugin-commonjs": "21.0.1",
+    "@rollup/plugin-node-resolve": "13.1.1",
     "@rollup/plugin-url": "6.1.0"
   },
   "files": [

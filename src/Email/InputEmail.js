@@ -60,7 +60,7 @@ export default (props) => {
     const checkEmail = (value) => {
         if (!value) return false;
         if (Array.isArray(domains) && domains.length > 0)
-            return checkEmailDomain(value);
+            if (!checkEmailDomain(value)) return false;
         return isEmail(value);
     }
 
