@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from "react";
 import { ArrayInput, SimpleFormIterator, TextInput } from 'react-admin';
 import { makeStyles } from '@material-ui/core/styles';
 import isURL from 'validator/lib/isURL';
@@ -35,7 +35,7 @@ export const URLTypes = {
  * - `URLs` is the default label given to the array. Use `grouplabel` prop to override.
  * 
  */
-export default (props) => {
+export const URLInput = (props) => {
 
     const {source, type = URLTypes.SINGLE, grouplabel = GROUPLABEL, 
         splitchar = SPLITCHAR, validate = [], errortext = ERRORTEXT, httpAllowed = false,ftpAllowed = false, APIEndPoint = false,

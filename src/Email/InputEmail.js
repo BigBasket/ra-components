@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from "react";
 import { ArrayInput, SimpleFormIterator, TextInput } from 'react-admin';
 import { makeStyles } from '@material-ui/core/styles';
 import isEmail from 'validator/lib/isEmail';
@@ -35,7 +35,7 @@ export const EmailTypes = {
  * - `Emails` is the default label given to the array. Use `grouplabel` prop to override.
  * 
  */
-export default (props) => {
+export const EmailInput = (props) => {
 
     const {source, type = EmailTypes.SINGLE, grouplabel = GROUPLABEL, 
         splitchar = SPLITCHAR, validate = [], errortext = ERRORTEXT,

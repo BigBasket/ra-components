@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from "react";
 import { ArrayInput, SimpleFormIterator, TextInput } from 'react-admin';
 import { makeStyles } from '@material-ui/core/styles';
 import parsePhoneNumber from 'libphonenumber-js';
@@ -33,9 +33,8 @@ export const PhoneTypes = {
  * - By default each of `PhoneInput` component is wrapped on the screen.  
  * - You can pass `wrap` as `false` to get each `PhoneInput` one below the other.
  * - `Phone Numbers` is the default label given to the array. Use `grouplabel` prop to override.
- * 
  */
-export default (props) => {
+export const PhoneInput = (props) => {
 
     const {source, type = PhoneTypes.SINGLE, grouplabel = GROUPLABEL, 
         splitchar = SPLITCHAR, validate = [], errortext = ERRORTEXT,
