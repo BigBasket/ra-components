@@ -1,41 +1,41 @@
-import JSONTree from 'react-json-tree';
 import React from "react";
+import {JSONTree} from 'react-json-tree';
 import { Button } from '@material-ui/core';
 import {FunctionField} from 'react-admin';
 
-  const ViewJSON = (JsonObj,treeview,expandview) => {
-    if (JsonObj === JSON.stringify({})) return '';
-    if (JsonObj && typeof JsonObj === 'object')
-      return treeview ? 
-        <JSONTree data={JsonObj} hideRoot shouldExpandNode={() => expandview}/> 
-        : JSON.stringify(JsonObj).replaceAll(/([{},:])/g, ' $1 ');
-    return '';
-  }
-  
-  /**
-   * 
-   * Your JSON can be viewed in a tree structure using `JsonField`.
-   * 
-   * @example
-   *  <JsonField source='config' label='JSON Config' />
-   * 
-   * You can also set JSON text directly instead of using source prop.
-   * @example
-   * <JsonField json={jsonobj} label='JSON Object' />
-   * 
-   * If `treeview` is `false`, JSON is viewed as text, i.e., tweaked to add enough spaces so that it fits the screen.
-   * @example
-   * <JsonField json={jsonobj} label='JSON Object' treeview={false}/>
-   * 
-   * Also, if `togglelabel` is set, a button is shown additionally to toggle between `tree` and `text`.
-   * @example
-   * <JsonField json={jsonobj} label='JSON Object' togglelabel='Toggle-View'/>
-   * 
-   * If `expandlabel` and `collapselabel` are set, a button is shown additionally to toggle between `expand` and `collapse`.
-   * @example
-   * <JsonField json={jsonobj} label='JSON Object' expandlabel='Expand' collapselabel='Collapse'/>
-   */
-  const JsonField = ({label,source,json,togglelabel,expandlabel,collapselabel,treeview=true,record}) => {
+const ViewJSON = (JsonObj,treeview,expandview) => {
+  if (JsonObj === JSON.stringify({})) return '';
+  if (JsonObj && typeof JsonObj === 'object')
+    return treeview ? 
+      <JSONTree data={JsonObj} hideRoot shouldExpandNode={() => expandview}/>
+      : JSON.stringify(JsonObj).replaceAll(/([{},:])/g, ' $1 ');
+  return '';
+}
+
+/**
+ * 
+ * Your JSON can be viewed in a tree structure using `JsonField`.
+ * 
+ * @example
+ *  <JsonField source='config' label='JSON Config' />
+ * 
+ * You can also set JSON text directly instead of using source prop.
+ * @example
+ * <JsonField json={jsonobj} label='JSON Object' />
+ * 
+ * If `treeview` is `false`, JSON is viewed as text, i.e., tweaked to add enough spaces so that it fits the screen.
+ * @example
+ * <JsonField json={jsonobj} label='JSON Object' treeview={false}/>
+ * 
+ * Also, if `togglelabel` is set, a button is shown additionally to toggle between `tree` and `text`.
+ * @example
+ * <JsonField json={jsonobj} label='JSON Object' togglelabel='Toggle-View'/>
+ * 
+ * If `expandlabel` and `collapselabel` are set, a button is shown additionally to toggle between `expand` and `collapse`.
+ * @example
+ * <JsonField json={jsonobj} label='JSON Object' expandlabel='Expand' collapselabel='Collapse'/>
+ */
+  export const JsonField = ({label,source,json,togglelabel,expandlabel,collapselabel,treeview=true,record}) => {
     let treeBtn;let expandBtn;
     const [tree,setTree] = React.useState(treeview);
     const [expand,setExpand] = React.useState(false);
@@ -51,5 +51,3 @@ import {FunctionField} from 'react-admin';
     const retVal = <div><p></p>{label}&nbsp;&nbsp;{treeBtn}&nbsp;&nbsp;{expandBtn}<p></p>{ViewJSON(data,tree,expand)}</div>;
     return <FunctionField render={() => retVal } /> ;
   }
-  
-  export default JsonField;
