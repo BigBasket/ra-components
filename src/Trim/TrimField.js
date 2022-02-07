@@ -1,28 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
 import { FunctionField } from 'react-admin';
 
 const DEFAULT_LIMITCHARS = 30;
 const DEFAULT_TRIMSTR = '...';
 
-class TrimField extends Component {
-    constructor(props) {
-      super();
-      this.props = props;
-    }
-
-    /**
-     * Any `TextField` with more number of characters can be limited using `TrimField`.
-     * @example
-     * <TrimField source='field' label='Trimmed Field' />
-     * 
-     * By default, this trims the value to 30 chars and appends ... to the end.
-     * You can customize it.
-     * @example
-     * <TrimField source='field' label='Trimmed Field' limit={40} trimstr='....' />
-     *
-     */
-    render() {
-
+/**
+* 
+* Any `TextField` with more number of characters can be limited using `TrimField`.
+* @example
+* <TrimField source='field' label='Trimmed Field' />
+* 
+* By default, this trims the value to 30 chars and appends ... to the end.
+* You can customize it.
+* @example
+* <TrimField source='field' label='Trimmed Field' limit={40} trimstr='....' />
+*
+*/
+export const  TrimField = (props) => {
     const TrimString = (str) => {
         let retval = str;
         if (retval && typeof retval ==='string')
@@ -30,7 +24,7 @@ class TrimField extends Component {
         return retval;
     };
 
-    const {source,text,limit = DEFAULT_LIMITCHARS, trimstr = DEFAULT_TRIMSTR, ...rest} = this.props;
+    const {source,text,limit = DEFAULT_LIMITCHARS, trimstr = DEFAULT_TRIMSTR, ...rest} = props;
     if (!text && !source) throw new Error(`Missing mandatory prop: text or source`);
     if (isNaN(Number(limit))) throw new Error(`Invalid prop value: limit must be a number`);
     return (
@@ -39,7 +33,4 @@ class TrimField extends Component {
             return TrimString(data, limit); }} 
         {...rest} />
     );
-    }
-  }
-  
-  export {TrimField};
+}
