@@ -12,6 +12,15 @@ const ViewJSON = (JsonObj,treeview,expandview) => {
   return '';
 }
 
+const GetJSON = (record,source) => {
+  const sources = (source === `ALL`) ? Object.keys(record) : source.split(`,`);
+  console.log('siva sources ',sources)
+  const retval = {};
+  for (let i = 0; i < sources.length; i++)
+      retval[sources[i]] = record[sources[i]];
+  return retval;
+}
+
 /**
  * 
  * Your JSON can be viewed in a tree structure using `JsonField`.
@@ -40,7 +49,7 @@ const ViewJSON = (JsonObj,treeview,expandview) => {
     const [tree,setTree] = React.useState(treeview);
     const [expand,setExpand] = React.useState(false);
     if (!json && !source) throw new Error(`Missing mandatory prop: json or source`);
-    const data = json || record[source];
+    const data = json || GetJSON(record,source);
     if (!data) return null;
     if (tree && expandlabel && collapselabel)
       expandBtn = <Button variant="contained" color="primary" size="small" onClick={() => setExpand(!expand)}>{expand?collapselabel:expandlabel}</Button>;
