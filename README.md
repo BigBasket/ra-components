@@ -54,6 +54,11 @@ Your JSON can be viewed in a tree structure using `JsonField` .
 ```js
 <JsonField source='config' label='JSON Config' />
 ```
+You can send multiple sources as comma seperated string.
+If you send source as `ALL`, JSON tree will be created from all the values of record.
+```js
+<JsonField source='config1,config2' label='JSON Config' />
+```
 
 You can also set JSON text directly instead of using source prop.
 ```js
