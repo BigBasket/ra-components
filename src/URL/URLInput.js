@@ -1,6 +1,5 @@
 import React from "react";
 import { ArrayInput, SimpleFormIterator, TextInput } from 'react-admin';
-import { makeStyles } from '@material-ui/core/styles';
 import isURL from 'validator/lib/isURL';
 
 const ERRORTEXT = 'Invalid URL';
@@ -43,20 +42,6 @@ export const URLInput = (props) => {
     
     if (!source) throw new Error(`Missing mandatory prop: source`);
 
-    const useIteratorStyle = makeStyles(() => ({
-        root: {
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-        },
-        form: {
-          width: '100%',
-        },
-        line: {
-          border: 1,
-        },
-    }));
-
     const checkURL = (value) => {
         if (!value) return false;
         if (APIEndPoint)
@@ -92,13 +77,13 @@ export const URLInput = (props) => {
 
     let retComponent = null;
     const errorobj = {message: errortext};
-    const classes = wrap ? useIteratorStyle() : undefined;
+    const sx = wrap ? {display:'flex',flexDirection:'row',flexWrap:'wrap',} : undefined;
     validate.push(validateURL);
     
     if (type === URLTypes.ARRAY){
         retComponent = (
             <ArrayInput source={source} label={grouplabel} >
-                <SimpleFormIterator classes={classes}>
+                <SimpleFormIterator sx={sx}>
                     <TextInput validate={validate} {...rest} />
                 </SimpleFormIterator>
             </ArrayInput>

@@ -1,6 +1,5 @@
 import React from "react";
 import { ArrayInput, SimpleFormIterator, TextInput } from 'react-admin';
-import { makeStyles } from '@material-ui/core/styles';
 import parsePhoneNumber from 'libphonenumber-js';
 
 const ERRORTEXT = 'Invalid Phone';
@@ -42,22 +41,9 @@ export const PhoneInput = (props) => {
     
     if (!source) throw new Error(`Missing mandatory prop: source`);
 
-    const useIteratorStyle = makeStyles(() => ({
-        root: {
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-        },
-        form: {
-          width: '100%',
-        },
-        line: {
-          border: 1,
-        },
-    }));
-
     const validatePhone = (value) => {
         if (!value) return;
+        if (Array.isArray(value) && value.length<=0) return;
         let isvalid = true;
         const values = value.split(splitchar);
         for (let i = 0; i < values.length; i++) {
@@ -71,13 +57,13 @@ export const PhoneInput = (props) => {
 
     let retComponent = null;
     const errorobj = {message: errortext};
-    const classes = wrap ? useIteratorStyle() : undefined;
+    const sx = wrap ? {display:'flex',flexDirection:'row',flexWrap:'wrap'} : undefined;
     validate.push(validatePhone);
-    
+
     if (type === PhoneTypes.ARRAY){
         retComponent = (
-            <ArrayInput source={source} label={grouplabel} >
-                <SimpleFormIterator classes={classes}>
+            <ArrayInput sx={sx} source={source} label={grouplabel} >
+                <SimpleFormIterator>
                     <TextInput validate={validate} {...rest} />
                 </SimpleFormIterator>
             </ArrayInput>

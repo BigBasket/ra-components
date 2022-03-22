@@ -1,6 +1,5 @@
 import React from "react";
 import { ArrayInput, SimpleFormIterator, TextInput } from 'react-admin';
-import { makeStyles } from '@material-ui/core/styles';
 import isEmail from 'validator/lib/isEmail';
 
 const ERRORTEXT = 'Invalid email';
@@ -43,20 +42,6 @@ export const EmailInput = (props) => {
     
     if (!source) throw new Error(`Missing mandatory prop: source`);
 
-    const useIteratorStyle = makeStyles(() => ({
-        root: {
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-        },
-        form: {
-          width: '100%',
-        },
-        line: {
-          border: 1,
-        },
-    }));
-
     const checkEmail = (value) => {
         if (!value) return false;
         if (Array.isArray(domains) && domains.length > 0)
@@ -76,6 +61,7 @@ export const EmailInput = (props) => {
 
     const validateEmail = (value) => {
         if (!value) return;
+        if (Array.isArray(value) && value.length<=0) return;
         let isvalid = true;
         const values = value.split(splitchar);
         for (let i = 0; i < values.length; i++) {
@@ -88,13 +74,13 @@ export const EmailInput = (props) => {
 
     let retComponent = null;
     const errorobj = {message: errortext};
-    const classes = wrap ? useIteratorStyle() : undefined;
+    const sx = wrap ? {display:'flex',flexDirection:'row',flexWrap:'wrap',} : undefined;
     validate.push(validateEmail);
     
     if (type === EmailTypes.ARRAY){
         retComponent = (
             <ArrayInput source={source} label={grouplabel} >
-                <SimpleFormIterator classes={classes}>
+                <SimpleFormIterator sx={sx}>
                     <TextInput validate={validate} {...rest} />
                 </SimpleFormIterator>
             </ArrayInput>
