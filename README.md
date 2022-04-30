@@ -1,6 +1,7 @@
 # About
 
 *Opensource components for react-admin.*
+- A tree like menu structure for react-admin, `TreeMenu` 
 - Validating JSON in a textinput is made easy using `JsonInput`.  
 - JSON object now looks pretty in `JsonField`.
 - Data can be trimmed using `TrimField` while displaying in datagrid etc. 
@@ -11,7 +12,7 @@
 
 **Supported react-admin versions:**
 
-React-Admin 3.x
+React-Admin 4.x
 
 # Installation
 
@@ -30,6 +31,51 @@ import {JsonInput,JsonField,TrimField} from '@bb-tech/ra-components';
 <JsonInput source='config' label='JSON Config' />
 ```
 
+# TreeMenu
+
+To use `ra-treemenu` in your react-admin application:
+
+1. Create a parent resource (non-routing) with the following key in the options prop: `isMenuParent = true`. Remember to pass the mandatory `name` prop in this resource as this will be used to map the child resource to it's specified parent in the tree.
+
+```js
+<Resource name="users" options={{ "label": "Users", "isMenuParent": true }} />
+```
+
+2. Now create a child resource under this parent by mapping the `menuParent` option in the `options` props to the `name` of your parent resource.
+
+```js
+<Resource name="posts" options={{ "label": "Posts", "menuParent": "users" }} />
+```
+
+This should give you a menu structure like below:
+
+<img src="./assets/tree.png" alt="Tree Image">
+
+Here's a simple example of organising the menu into a tree-like structure:
+
+```js
+// In App.js
+import * as React from 'react';
+import { Admin, Resource, Layout } from 'react-admin';
+/* Import TreeMenu from the package */
+import TreeMenu from '@bb-tech/ra-treemenu';
+
+const App = () => (
+    <Admin layout={(props) => <Layout {...props} menu={TreeMenu} />} >
+        {/* Dummy parent resource with isMenuParent options as true */}
+        <Resource name="users" options={{ "label": "Users", "isMenuParent": true }} />
+        {/* Children menu items under parent */}
+        <Resource name="posts" options={{ "label": "Posts", "menuParent": "users" }} />
+        <Resource name="comments" options={{ "label": "Comments", "menuParent": "users" }} />
+        {/* Dummy parent resource with isMenuParent options as true */}
+        <Resource name="groups" options={{ "label": "Groups", "isMenuParent": true }} />
+        {/* Children menu items under parent */}
+        <Resource name="members" options={{ "label": "Members", "menuParent": "groups" }} />
+    </Admin>
+);
+
+export default App;
+```
 # JsonInput
 
 `JsonInput` validates if the entered value is JSON or not.

@@ -30,29 +30,26 @@ const parseFunction = (json) => {
   * <JsonInput source='config' label='JSON Config' parse={false}/>
  */
 export const JsonInput = (props) => {
-  const {validate = [],errortext = DEFAULT_ERRORTEXT,resettable,multiline = true,parse=true, ...rest} = props;
-    const errorobj = {message: errortext};
+  const {validate = [],errortext = DEFAULT_ERRORTEXT,fullWidth=true, resettable = false,multiline = true,parse=true } = props;
+  const errorobj = {message: errortext};
 
-    const validateJSON = (value) => {
-      if (!value || typeof value === 'object') 
-        return undefined;
-      return isJSON(value) ? undefined : errorobj;
-    }
+  const validateJSON = (value) => {
+    if (!value || typeof value === 'object') 
+      return undefined;
+    return isJSON(value) ? undefined : errorobj;
+  }
 
-    const formatJSON = (json) => {
-      let retval = json;
-      if (retval && typeof retval === 'object') 
-        retval = JSON.stringify(retval);
-      return retval;
-    };
-
-    validate.push(validateJSON);
-    rest.validate = validate;
-    rest.format = formatJSON;
-    if (parse) rest.parse = parseFunction;
-    if (multiline) rest.multiline = true;
-    return (
-        <TextInput {...rest} />
-    );
+  const formatJSON = (json) => {
+    let retval = json;
+    if (retval && typeof retval === 'object') 
+      retval = JSON.stringify(retval);
+    return retval;
+  };
+  const cProps = {fullWidth:fullWidth, resettable: resettable, multiline:multiline, validate:validate, format:formatJSON, parse:(parse?parseFunction:undefined)};
+  Object.assign(cProps,props);
+  validate.push(validateJSON);
+  return (
+      <TextInput {...cProps}/>
+  );
 }
 

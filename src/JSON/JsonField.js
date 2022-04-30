@@ -1,6 +1,6 @@
 import React from "react";
 import {JSONTree} from 'react-json-tree';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 import {FunctionField} from 'react-admin';
 
 const ViewJSON = (JsonObj,treeview,expandview) => {
@@ -14,7 +14,6 @@ const ViewJSON = (JsonObj,treeview,expandview) => {
 
 const GetJSON = (record,source) => {
   const sources = (source === `ALL`) ? Object.keys(record) : source.split(`,`);
-  console.log('siva sources ',sources)
   const retval = {};
   for (let i = 0; i < sources.length; i++)
       retval[sources[i]] = record[sources[i]];
@@ -52,10 +51,10 @@ const GetJSON = (record,source) => {
     const data = json || GetJSON(record,source);
     if (!data) return null;
     if (tree && expandlabel && collapselabel)
-      expandBtn = <Button variant="contained" color="primary" size="small" onClick={() => setExpand(!expand)}>{expand?collapselabel:expandlabel}</Button>;
+      expandBtn = <Button variant="contained" size="small" onClick={() => setExpand(!expand)}>{expand?collapselabel:expandlabel}</Button>;
     
     if (treeview && togglelabel)
-      treeBtn = <Button variant="contained" color="primary" size="small" onClick={() => setTree(!tree)}>{togglelabel}</Button>;
+      treeBtn = <Button variant="contained" size="small" onClick={() => setTree(!tree)}>{togglelabel}</Button>;
     
     const retVal = <div><p></p>{label}&nbsp;&nbsp;{treeBtn}&nbsp;&nbsp;{expandBtn}<p></p>{ViewJSON(data,tree,expand)}</div>;
     return <FunctionField render={() => retVal } /> ;

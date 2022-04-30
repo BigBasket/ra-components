@@ -17,3 +17,5 @@ export {PhoneTypes as PhoneTypes} from './Phone/PhoneInput';
 export {URLInput as URLInput} from './URL/URLInput';
 
 export {URLTypes as URLTypes} from './URL/URLInput';
+
+export {TreeMenu as TreeMenu} from './Tree/index';
