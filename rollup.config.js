@@ -25,7 +25,7 @@ export default {
             babelHelpers:'runtime',
             plugins: ['@babel/plugin-transform-runtime']
         }),
-        resolve(),
+        resolve,
         commonjs()
     ]
 };
