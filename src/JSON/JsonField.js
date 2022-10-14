@@ -14,7 +14,6 @@ const ViewJSON = (JsonObj,treeview,expandview) => {
 
 const GetJSON = (record,source) => {
   const sources = (source === `ALL`) ? Object.keys(record) : source.split(`,`);
-  console.log('siva sources ',sources)
   const retval = {};
   for (let i = 0; i < sources.length; i++)
       retval[sources[i]] = record[sources[i]];

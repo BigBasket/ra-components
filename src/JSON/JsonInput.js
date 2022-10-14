@@ -5,21 +5,14 @@ import isJSON from 'validator/lib/isJSON';
 const DEFAULT_ERRORTEXT = 'Invalid JSON';
 const nullreplacer =  (key,val) => (val === null? undefined:val);
 const parseFunction = (json) => {
-  let retval = json;
-  try { 
-    retval = JSON.parse(json);
+  try {
+    let retval = json;
+    if (retval && typeof retval === 'object') 
+      retval = JSON.stringify(retval,nullreplacer);
+    retval = JSON.parse(JSON.parse(retval));
+    return retval;
   }
-  catch (e){}
-  finally {return retval;}
-}
-
-const parseFunctionNULLs = (json) => {
-  let retval = json;
-  try { 
-    retval = JSON.parse(JSON.parse(JSON.stringify(json,nullreplacer)));
-  }
-  catch (e){}
-  finally {return retval;}
+  catch (e){return json;}
 }
 
 /**
@@ -41,7 +34,7 @@ const parseFunctionNULLs = (json) => {
   * <JsonInput source='config' label='JSON Config' parse={false}/>
  */
 export const JsonInput = (props) => {
-  const {validate = [],errortext = DEFAULT_ERRORTEXT,fullWidth=true, resettable = false,multiline = true,parse=true,replacenulls=true } = props;
+  const {validate = [],errortext = DEFAULT_ERRORTEXT,fullWidth=true, resettable = false,multiline = true,parseJSON=true} = props;
   const errorobj = {message: errortext};
   const validateJSON = (value) => {
     if (!value || typeof value === 'object') 
@@ -55,7 +48,7 @@ export const JsonInput = (props) => {
       retval = JSON.stringify(retval);
     return retval;
   };
-  const cProps = {fullWidth:fullWidth, resettable: resettable, multiline:multiline, validate:validate, format:formatJSON, parse:(parse?(replacenulls?parseFunctionNULLs:parseFunction):undefined)};
+  const cProps = {fullWidth:fullWidth, resettable: resettable, multiline:multiline, validate:validate, format:formatJSON, parse:(parseJSON?parseFunction:undefined)};
   Object.assign(cProps,props);
   validate.push(validateJSON);
   return (
