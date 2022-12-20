@@ -74,13 +74,13 @@ export const EmailInput = (props) => {
 
     let retComponent = null;
     const errorobj = {message: errortext};
-    const sx = wrap ? {display:'flex',flexDirection:'row',flexWrap:'wrap',} : undefined;
+    const sx = wrap ? {display: 'inline',flexDirection:'row',flexWrap:'wrap'} : undefined;
     validate.push(validateEmail);
     
     if (type === EmailTypes.ARRAY){
         retComponent = (
             <ArrayInput source={source} label={grouplabel} >
-                <SimpleFormIterator sx={sx}>
+                <SimpleFormIterator sx={sx} inline>
                     <TextInput validate={validate} {...rest} />
                 </SimpleFormIterator>
             </ArrayInput>

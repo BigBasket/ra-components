@@ -1,7 +1,7 @@
 import React from "react";
 import {JSONTree} from 'react-json-tree';
 import { Button } from '@mui/material';
-import {FunctionField} from 'react-admin';
+import {FunctionField, useRecordContext} from 'react-admin';
 
 const ViewJSON = (JsonObj,treeview,expandview) => {
   if (JsonObj === JSON.stringify({})) return '';
@@ -13,7 +13,7 @@ const ViewJSON = (JsonObj,treeview,expandview) => {
 }
 
 const GetJSON = (record,source) => {
-  const sources = (source === `ALL`) ? Object.keys(record) : source.split(`,`);
+  const sources = record && (source === `ALL`) ? Object.keys(record) : source.split(`,`);
   const retval = {};
   for (let i = 0; i < sources.length; i++)
       retval[sources[i]] = record[sources[i]];
@@ -43,10 +43,11 @@ const GetJSON = (record,source) => {
  * @example
  * <JsonField json={jsonobj} label='JSON Object' expandlabel='Expand' collapselabel='Collapse'/>
  */
-  export const JsonField = ({label,source,json,togglelabel,expandlabel,collapselabel,treeview=true,record}) => {
+  export const JsonField = ({label,source,json,togglelabel,expandlabel,collapselabel,treeview=true}) => {
     let treeBtn;let expandBtn;
     const [tree,setTree] = React.useState(treeview);
     const [expand,setExpand] = React.useState(false);
+    const record = useRecordContext();
     if (!json && !source) throw new Error(`Missing mandatory prop: json or source`);
     const data = json || GetJSON(record,source);
     if (!data) return null;

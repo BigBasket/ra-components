@@ -1,6 +1,6 @@
 {
   "name": "@bb-tech/ra-components",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Additional opensource components for react-admin 4.x",
   "author": "BigBasket Tech",
   "repository": "BigBasket/ra-components",
@@ -49,7 +49,8 @@
     "react": "^18.0.0",
     "react-admin": "^4.0.1",
     "react-dom": "^18.0.0",
-    "react-json-tree": "^0.16.1"
+    "react-json-tree": "^0.16.1",
+    "classnames": "^2.3.2"
   },
   "devDependencies": {
     "@rollup/plugin-babel": "^5.3.0",
