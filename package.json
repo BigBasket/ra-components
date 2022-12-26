@@ -1,7 +1,7 @@
 {
   "name": "@bb-tech/ra-components",
-  "version": "1.0.13",
-  "description": "Additional opensource components for react-admin",
+  "version": "2.0.2",
+  "description": "Additional opensource components for react-admin 4.x",
   "author": "BigBasket Tech",
   "repository": "BigBasket/ra-components",
   "license": "MIT",
@@ -43,10 +43,13 @@
     "validator": "^13.7.0"
   },
   "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-admin": "^3.0.0",
-    "@material-ui/core": "4.12.3",
+    "@mui/icons-material": "^5.4.2",
+    "@mui/material": "^5.0.0",
+    "@mui/styles": "^5.4.2",
+    "classnames": "^2.3.2",
+    "react": "^18.0.0",
+    "react-admin": "^4.0.1",
+    "react-dom": "^18.0.0",
     "react-json-tree": "^0.16.1"
   },
   "devDependencies": {
