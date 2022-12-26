@@ -47,7 +47,7 @@ export const JsonInput = (props) => {
     if (!value || typeof value === "object") return undefined;
     return isJSON(value) ? undefined : errorobj;
   };
-
+  
   const formatJSON = (json) => {
     let retval = json;
     if (retval && typeof retval === "object") retval = JSON.stringify(retval);
