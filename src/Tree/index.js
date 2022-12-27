@@ -51,6 +51,7 @@ export const TreeMenu = (props) => {
     onMenuClick,
     logout,
     dashboardlabel,
+    setMenuColors,
     ...rest
   } = props;
 
@@ -111,6 +112,7 @@ export const TreeMenu = (props) => {
       onClick={onMenuClick}
       dense={dense}
       sidebarIsOpen={open}
+      sx={setMenuColors ? { color: "secondary.main" } : {}}
     />
   );
 
@@ -126,6 +128,7 @@ export const TreeMenu = (props) => {
       name={getPrimaryTextForResource(parentResource)}
       icon={parentResource.icon ? <parentResource.icon /> : <LabelIcon />}
       dense={dense}
+      setMenuColors={setMenuColors}
     >
       {
         // eslint-disable-next-line
@@ -186,6 +189,7 @@ export const TreeMenu = (props) => {
               dense={dense}
               sidebarIsOpen={open}
               primaryText={dashboardlabel}
+              sx={setMenuColors ? { color: "primary.main" } : {}}
             />
           )}
           {resRenderGroup}
@@ -203,9 +207,11 @@ TreeMenu.propTypes = {
   logout: PropTypes.element,
   onMenuClick: PropTypes.func,
   dashboardlabel: PropTypes.string,
+  setMenuColors: PropTypes.bool,
 };
 
 TreeMenu.defaultProps = {
   onMenuClick: () => null,
   dashboardlabel: "Dashboard",
+  setMenuColors: true,
 };
