@@ -44,6 +44,7 @@ const CustomMenuItem = ({
   icon,
   children,
   dense,
+  setMenuColors,
 }) => {
   const classes = useStyles();
   const translate = useTranslate();
@@ -62,7 +63,7 @@ const CustomMenuItem = ({
       </ListItemIcon>
       <Typography
         variant="inherit"
-        color="primary"
+        color={setMenuColors ? "primary.main" : ""}
         className={classnames(classes.menuItemName, "menuItemName")}
       >
         {translate(name)}

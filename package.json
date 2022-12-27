@@ -1,6 +1,6 @@
 {
   "name": "@bb-tech/ra-components",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Additional opensource components for react-admin 4.x",
   "author": "BigBasket Tech",
   "repository": "BigBasket/ra-components",
