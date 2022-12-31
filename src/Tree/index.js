@@ -68,16 +68,19 @@ export const TreeMenu = (props) => {
   };
 
   const isParent = (resource) =>
+    resource &&
     resource.options &&
     resource.options.hasOwnProperty("isMenuParent") &&
     resource.options.isMenuParent;
 
   const isOrphan = (resource) =>
+    resource &&
     resource.options &&
     !resource.options.hasOwnProperty("menuParent") &&
     !resource.options.hasOwnProperty("isMenuParent");
 
   const isChildOfParent = (resource, parentResource) =>
+    resource &&
     resource.options &&
     resource.options.hasOwnProperty("menuParent") &&
     resource.options.menuParent == parentResource.name;
@@ -93,7 +96,7 @@ export const TreeMenu = (props) => {
 
   const getPrimaryTextForResource = (resource) => {
     let resourcename = "";
-    if (resource.options && resource.options.label)
+    if (resource && resource.options && resource.options.label)
       resourcename = resource.options.label;
     else if (resource.name) {
       resourcename = translate(`resources.${resource.name}.name`);
@@ -157,6 +160,8 @@ export const TreeMenu = (props) => {
         initialExpansionState[resource.name] = false;
       } else if (
         pathname.startsWith(`#/${resource.name}`) &&
+        resource &&
+        resource.options &&
         resource.options.hasOwnProperty("menuParent")
       ) {
         parentActiveResName = resource.options.menuParent;
@@ -175,25 +180,23 @@ export const TreeMenu = (props) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div>
-        <div
-          className={classnames(classes.main, className, {
-            [classes.open]: open,
-            [classes.closed]: !open,
-          })}
-          {...rest}
-        >
-          {hasDashboard && (
-            <DashboardMenuItem
-              onClick={onMenuClick}
-              dense={dense}
-              sidebarIsOpen={open}
-              primaryText={dashboardlabel}
-              sx={setMenuColors ? { color: "primary.main" } : {}}
-            />
-          )}
-          {resRenderGroup}
-        </div>
+      <div
+        className={classnames(classes.main, className, {
+          [classes.open]: open,
+          [classes.closed]: !open,
+        })}
+        {...rest}
+      >
+        {hasDashboard && (
+          <DashboardMenuItem
+            onClick={onMenuClick}
+            dense={dense}
+            sidebarIsOpen={open}
+            primaryText={dashboardlabel}
+            sx={setMenuColors ? { color: "primary.main" } : {}}
+          />
+        )}
+        {resRenderGroup}
       </div>
     </ThemeProvider>
   );
