@@ -40,6 +40,7 @@ export const JsonInput = (props) => {
     resettable = false,
     multiline = true,
     parse = true,
+    ...rest
   } = props;
   const errorobj = { message: errortext };
 
@@ -47,7 +48,7 @@ export const JsonInput = (props) => {
     if (!value || typeof value === "object") return undefined;
     return isJSON(value) ? undefined : errorobj;
   };
-  
+
   const formatJSON = (json) => {
     let retval = json;
     if (retval && typeof retval === "object") retval = JSON.stringify(retval);
@@ -63,5 +64,5 @@ export const JsonInput = (props) => {
   };
   Object.assign(cProps, props);
   validate.push(validateJSON);
-  return <TextInput {...cProps} />;
+  return <TextInput {...cProps} {...rest} />;
 };

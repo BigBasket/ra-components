@@ -3,11 +3,16 @@ import { JSONTree } from "react-json-tree";
 import { Button } from "@mui/material";
 import { FunctionField, useRecordContext, useTranslate } from "react-admin";
 
-const ViewJSON = (JsonObj, treeview, expandview) => {
+const ViewJSON = (JsonObj, treeview, expandview, rest) => {
   if (JsonObj === JSON.stringify({})) return "";
   if (JsonObj && typeof JsonObj === "object")
     return treeview ? (
-      <JSONTree data={JsonObj} hideRoot shouldExpandNode={() => expandview} />
+      <JSONTree
+        data={JsonObj}
+        hideRoot
+        shouldExpandNode={() => expandview}
+        {...rest}
+      />
     ) : (
       JSON.stringify(JsonObj).replaceAll(/([{},:])/g, " $1 ")
     );
@@ -55,6 +60,7 @@ export const JsonField = ({
   collapselabel,
   defaultExpand = true,
   treeview = true,
+  ...rest
 }) => {
   let treeBtn;
   let expandBtn;
@@ -87,10 +93,8 @@ export const JsonField = ({
 
   const retVal = (
     <div>
-      <p></p>
       {label && translate(label)}&nbsp;&nbsp;{treeBtn}&nbsp;&nbsp;{expandBtn}
-      <p></p>
-      {ViewJSON(data, tree, expand)}
+      {ViewJSON(data, tree, expand, rest)}
     </div>
   );
   return <FunctionField render={() => retVal} />;
