@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { JSONTree } from "react-json-tree";
 import { Button } from "@mui/material";
-import { FunctionField, useRecordContext } from "react-admin";
+import { FunctionField, useRecordContext, useTranslate } from "react-admin";
 
-const ViewJSON = (JsonObj, treeview, expandview) => {
+const ViewJSON = (JsonObj, treeview, expandview, rest) => {
   if (JsonObj === JSON.stringify({})) return "";
   if (JsonObj && typeof JsonObj === "object")
     return treeview ? (
-      <JSONTree data={JsonObj} hideRoot shouldExpandNode={() => expandview} />
+      <JSONTree
+        data={JsonObj}
+        hideRoot
+        shouldExpandNode={() => expandview}
+        {...rest}
+      />
     ) : (
       JSON.stringify(JsonObj).replaceAll(/([{},:])/g, " $1 ")
     );
@@ -53,13 +58,17 @@ export const JsonField = ({
   togglelabel,
   expandlabel,
   collapselabel,
+  defaultExpand = true,
   treeview = true,
+  ...rest
 }) => {
   let treeBtn;
   let expandBtn;
-  const [tree, setTree] = React.useState(treeview);
-  const [expand, setExpand] = React.useState(false);
+  const [tree, setTree] = useState(treeview);
+  const [expand, setExpand] = useState(defaultExpand);
   const record = useRecordContext();
+  const translate = useTranslate();
+  if (!record) return null;
   if (!json && !source)
     throw new Error(`Missing mandatory prop: json or source`);
   const data = json || GetJSON(record, source);
@@ -71,23 +80,21 @@ export const JsonField = ({
         size="small"
         onClick={() => setExpand(!expand)}
       >
-        {expand ? collapselabel : expandlabel}
+        {expand ? translate(collapselabel) : translate(expandlabel)}
       </Button>
     );
 
   if (treeview && togglelabel)
     treeBtn = (
       <Button variant="contained" size="small" onClick={() => setTree(!tree)}>
-        {togglelabel}
+        {translate(togglelabel)}
       </Button>
     );
 
   const retVal = (
     <div>
-      <p></p>
-      {label}&nbsp;&nbsp;{treeBtn}&nbsp;&nbsp;{expandBtn}
-      <p></p>
-      {ViewJSON(data, tree, expand)}
+      {label && translate(label)}&nbsp;&nbsp;{treeBtn}&nbsp;&nbsp;{expandBtn}
+      {ViewJSON(data, tree, expand, rest)}
     </div>
   );
   return <FunctionField render={() => retVal} />;
