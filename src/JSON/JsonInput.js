@@ -4,7 +4,7 @@ import isJSON from 'validator/lib/isJSON';
 
 const DEFAULT_ERRORTEXT = 'Invalid JSON';
 
-function parseFunction(json) {
+const parseFunction = (json) => {
   try {
     let retval = json;
     if (retval && typeof retval === 'object')
@@ -59,9 +59,8 @@ export const JsonInput = (props) => {
     multiline: multiline,
     validate: validate,
     format: formatJSON,
-    parse: parse ? parseFunction : undefined,
-  };
-
+  }; 
+  if (parse) cProps.parse = parseFunction;
   validate.push(validateJSON);
   return (
     <TextInput {...cProps} {...rest} />
