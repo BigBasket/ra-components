@@ -6,10 +6,7 @@ const DEFAULT_ERRORTEXT = 'Invalid JSON';
 
 const parseFunction = (json) => {
   try {
-    let retval = json;
-    if (retval && typeof retval === 'object')
-      retval = JSON.parse(retval);
-    return retval;
+    return JSON.parse(json);
   }
   catch (e) { return json; }
 }
