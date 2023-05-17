@@ -6,7 +6,7 @@ const DEFAULT_ERRORTEXT = 'Invalid JSON';
 
 const parseFunction = (json) => {
   try {
-    return JSON.parse(json);
+    return json && JSON.parse(json);
   }
   catch (e) { return json; }
 }
