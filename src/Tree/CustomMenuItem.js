@@ -8,10 +8,9 @@ import Typography from "@mui/material/Typography";
 import Collapse from "@mui/material/Collapse";
 import Tooltip from "@mui/material/Tooltip";
 import { makeStyles } from "@mui/styles";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 import classnames from "classnames";
 
-const theme = createTheme();
 const useStyles = makeStyles(
   (theme) => ({
     icon: { minWidth: theme.spacing(5) },
@@ -28,9 +27,7 @@ const useStyles = makeStyles(
       },
     },
     menuItem: {},
-    menuItemName: {
-      color: theme.palette.secondary,
-    },
+
     openMenuItem: {},
   }),
   { name: "RaTreeCustomMenuItem" }
@@ -44,7 +41,6 @@ const CustomMenuItem = ({
   icon,
   children,
   dense,
-  setMenuColors,
 }) => {
   const classes = useStyles();
   const translate = useTranslate();
@@ -63,7 +59,6 @@ const CustomMenuItem = ({
       </ListItemIcon>
       <Typography
         variant="inherit"
-        color={setMenuColors ? "primary.main" : ""}
         className={classnames(classes.menuItemName, "menuItemName")}
       >
         {translate(name)}
@@ -72,34 +67,32 @@ const CustomMenuItem = ({
   );
 
   return (
-    <ThemeProvider theme={theme}>
-      <Fragment>
-        {sidebarIsOpen || isOpen ? (
-          header
-        ) : (
-          <Tooltip title={translate(name)} placement="right">
-            {header}
-          </Tooltip>
-        )}
-        <Collapse in={isOpen} timeout="auto" unmountOnExit>
-          <List
-            dense={dense}
-            component="div"
-            disablePadding
-            className={
-              sidebarIsOpen ? classes.sidebarIsOpen : classes.sidebarIsClosed
-            }
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "left",
-            }}
-          >
-            {children}
-          </List>
-        </Collapse>
-      </Fragment>
-    </ThemeProvider>
+    <Fragment>
+      {sidebarIsOpen || isOpen ? (
+        header
+      ) : (
+        <Tooltip title={translate(name)} placement="right">
+          {header}
+        </Tooltip>
+      )}
+      <Collapse in={isOpen} timeout="auto" unmountOnExit>
+        <List
+          dense={dense}
+          component="div"
+          disablePadding
+          className={
+            sidebarIsOpen ? classes.sidebarIsOpen : classes.sidebarIsClosed
+          }
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "left",
+          }}
+        >
+          {children}
+        </List>
+      </Collapse>
+    </Fragment>
   );
 };
 

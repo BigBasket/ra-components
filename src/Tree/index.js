@@ -51,7 +51,6 @@ export const TreeMenu = (props) => {
     onMenuClick,
     logout,
     dashboardlabel,
-    setMenuColors,
     ...rest
   } = props;
 
@@ -115,7 +114,6 @@ export const TreeMenu = (props) => {
       onClick={onMenuClick}
       dense={dense}
       sidebarIsOpen={open}
-      sx={setMenuColors ? { color: "secondary.main" } : {}}
     />
   );
 
@@ -131,7 +129,6 @@ export const TreeMenu = (props) => {
       name={getPrimaryTextForResource(parentResource)}
       icon={parentResource.icon ? <parentResource.icon /> : <LabelIcon />}
       dense={dense}
-      setMenuColors={setMenuColors}
     >
       {
         // eslint-disable-next-line
@@ -177,28 +174,24 @@ export const TreeMenu = (props) => {
       if (isParent(resource)) resRenderGroup.push(mapParentStack(resource));
       if (isOrphan(resource)) resRenderGroup.push(mapIndependent(resource));
     });
-
   return (
-    <ThemeProvider theme={theme}>
-      <div
-        className={classnames(classes.main, className, {
-          [classes.open]: open,
-          [classes.closed]: !open,
-        })}
-        {...rest}
-      >
-        {hasDashboard && (
-          <DashboardMenuItem
-            onClick={onMenuClick}
-            dense={dense}
-            sidebarIsOpen={open}
-            primaryText={dashboardlabel}
-            sx={setMenuColors ? { color: "primary.main" } : {}}
-          />
-        )}
-        {resRenderGroup}
-      </div>
-    </ThemeProvider>
+    <div
+      className={classnames(classes.main, className, {
+        [classes.open]: open,
+        [classes.closed]: !open,
+      })}
+      {...rest}
+    >
+      {hasDashboard && (
+        <DashboardMenuItem
+          onClick={onMenuClick}
+          dense={dense}
+          sidebarIsOpen={open}
+          primaryText={dashboardlabel}
+        />
+      )}
+      {resRenderGroup}
+    </div>
   );
 };
 
@@ -210,11 +203,9 @@ TreeMenu.propTypes = {
   logout: PropTypes.element,
   onMenuClick: PropTypes.func,
   dashboardlabel: PropTypes.string,
-  setMenuColors: PropTypes.bool,
 };
 
 TreeMenu.defaultProps = {
   onMenuClick: () => null,
   dashboardlabel: "Dashboard",
-  setMenuColors: true,
 };
