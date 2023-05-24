@@ -5,14 +5,10 @@ import isJSON from "validator/lib/isJSON";
 const DEFAULT_ERRORTEXT = "Invalid JSON";
 
 const parseFunction = (json) => {
-  let retval = json;
-  try {
-    retval = JSON.parse(json);
-  } catch (e) {
-  } finally {
-    return retval;
+    return json && JSON.parse(json);
   }
-};
+  catch (e) { return json; }
+}
 
 /**
  *
@@ -33,25 +29,24 @@ const parseFunction = (json) => {
  * <JsonInput source='config' label='JSON Config' parse={false}/>
  */
 export const JsonInput = (props) => {
-  const {
-    validate = [],
-    errortext = DEFAULT_ERRORTEXT,
-    fullWidth = true,
-    resettable = false,
-    multiline = true,
+  const { validate = [], 
+    errortext = DEFAULT_ERRORTEXT, 
+    fullWidth = true, 
+    resettable = false, 
+    multiline = true, 
     parse = true,
-    ...rest
-  } = props;
+     ...rest } = props;
   const errorobj = { message: errortext };
-
   const validateJSON = (value) => {
-    if (!value || typeof value === "object") return undefined;
+    if (!value || typeof value === 'object')
+      return undefined;
     return isJSON(value) ? undefined : errorobj;
-  };
+  }
 
   const formatJSON = (json) => {
     let retval = json;
-    if (retval && typeof retval === "object") retval = JSON.stringify(retval);
+    if (retval && typeof retval === 'object')
+      retval = JSON.stringify(retval);
     return retval;
   };
   const cProps = {
@@ -60,9 +55,10 @@ export const JsonInput = (props) => {
     multiline: multiline,
     validate: validate,
     format: formatJSON,
-    parse: parse ? parseFunction : undefined,
-  };
-  Object.assign(cProps, props);
+  }; 
+  if (parse) cProps.parse = parseFunction;
   validate.push(validateJSON);
-  return <TextInput {...cProps} {...rest} />;
-};
+  return (
+    <TextInput {...cProps} {...rest} />
+  );
+}
