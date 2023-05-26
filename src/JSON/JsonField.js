@@ -43,10 +43,10 @@ const GetJSON = (record,source) => {
  * @example
  * <JsonField json={jsonobj} label='JSON Object' expandlabel='Expand' collapselabel='Collapse'/>
  */
-  export const JsonField = ({label,source,json,togglelabel,expandlabel,collapselabel,treeview=true,record}) => {
+  export const JsonField = ({label,source,json,togglelabel,expandlabel,collapselabel,treeview=true,record, defaultExpand = true, styles = {}}) => {
     let treeBtn;let expandBtn;
     const [tree,setTree] = React.useState(treeview);
-    const [expand,setExpand] = React.useState(false);
+    const [expand,setExpand] = React.useState(defaultExpand);
     if (!json && !source) throw new Error(`Missing mandatory prop: json or source`);
     const data = json || GetJSON(record,source);
     if (!data) return null;
@@ -56,6 +56,6 @@ const GetJSON = (record,source) => {
     if (treeview && togglelabel)
       treeBtn = <Button variant="contained" color="primary" size="small" onClick={() => setTree(!tree)}>{togglelabel}</Button>;
     
-    const retVal = <div><p></p>{label}&nbsp;&nbsp;{treeBtn}&nbsp;&nbsp;{expandBtn}<p></p>{ViewJSON(data,tree,expand)}</div>;
+    const retVal = <div style={styles}><p></p>{label}&nbsp;&nbsp;{treeBtn}&nbsp;&nbsp;{expandBtn}<p></p>{ViewJSON(data,tree,expand)}</div>;
     return <FunctionField render={() => retVal } /> ;
   }
