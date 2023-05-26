@@ -43,7 +43,7 @@ const GetJSON = (record,source) => {
  * @example
  * <JsonField json={jsonobj} label='JSON Object' expandlabel='Expand' collapselabel='Collapse'/>
  */
-  export const JsonField = ({label,source,json,togglelabel,expandlabel,collapselabel,treeview=true,record, defaultExpand = true, style = {}}) => {
+  export const JsonField = ({label,source,json,togglelabel,expandlabel,collapselabel,treeview=true,record, defaultExpand = false, style = {}}) => {
     let treeBtn;let expandBtn;
     const [tree,setTree] = React.useState(treeview);
     const [expand,setExpand] = React.useState(defaultExpand);
