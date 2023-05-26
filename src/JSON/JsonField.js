@@ -43,7 +43,7 @@ const GetJSON = (record,source) => {
  * @example
  * <JsonField json={jsonobj} label='JSON Object' expandlabel='Expand' collapselabel='Collapse'/>
  */
-  export const JsonField = ({label,source,json,togglelabel,expandlabel,collapselabel,treeview=true,record, defaultExpand = true, styles = {}}) => {
+  export const JsonField = ({label,source,json,togglelabel,expandlabel,collapselabel,treeview=true,record, defaultExpand = true, style = {}}) => {
     let treeBtn;let expandBtn;
     const [tree,setTree] = React.useState(treeview);
     const [expand,setExpand] = React.useState(defaultExpand);
@@ -56,6 +56,6 @@ const GetJSON = (record,source) => {
     if (treeview && togglelabel)
       treeBtn = <Button variant="contained" color="primary" size="small" onClick={() => setTree(!tree)}>{togglelabel}</Button>;
     
-    const retVal = <div style={styles}><p></p>{label}&nbsp;&nbsp;{treeBtn}&nbsp;&nbsp;{expandBtn}<p></p>{ViewJSON(data,tree,expand)}</div>;
+    const retVal = <div style={style}><p></p>{label}&nbsp;&nbsp;{treeBtn}&nbsp;&nbsp;{expandBtn}<p></p>{ViewJSON(data,tree,expand)}</div>;
     return <FunctionField render={() => retVal } /> ;
   }
