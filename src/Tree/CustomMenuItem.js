@@ -8,7 +8,6 @@ import Typography from "@mui/material/Typography";
 import Collapse from "@mui/material/Collapse";
 import Tooltip from "@mui/material/Tooltip";
 import { makeStyles } from "@mui/styles";
-import { createTheme } from "@mui/material/styles";
 import classnames from "classnames";
 
 const useStyles = makeStyles(

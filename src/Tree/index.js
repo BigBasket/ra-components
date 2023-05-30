@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import LabelIcon from "@mui/icons-material/Label";
 import { makeStyles } from "@mui/styles";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
   MenuItemLink,
   useResourceDefinitions,
@@ -14,7 +13,6 @@ import classnames from "classnames";
 import DefaultIcon from "@mui/icons-material/ViewList";
 import CustomMenuItem from "./CustomMenuItem";
 
-const theme = createTheme();
 const useStyles = makeStyles(
   (theme) => ({
     main: {
