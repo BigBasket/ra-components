@@ -58,7 +58,7 @@ export const JsonField = ({
   togglelabel,
   expandlabel,
   collapselabel,
-  defaultExpand = true,
+  defaultExpand = false,
   treeview = true,
   ...rest
 }) => {
