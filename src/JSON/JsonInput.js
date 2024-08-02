@@ -6,7 +6,20 @@ const DEFAULT_ERRORTEXT = 'Invalid JSON';
 
 const parseFunction = (json) => {
   try {
-    return json && JSON.parse(json);
+    let jsonObject = JSON.parse(json);
+    // Recursively delete null keys
+    function deleteNullKeys(obj) {
+      for (let key in obj) {
+        if (obj[key] === null) {
+          delete obj[key];
+        } else if (typeof obj[key] === 'object') {
+          deleteNullKeys(obj[key]);
+        }
+      }
+    }
+
+    deleteNullKeys(jsonObject);
+    return jsonObject;
   }
   catch (e) { return json; }
 }
@@ -30,13 +43,13 @@ const parseFunction = (json) => {
   * <JsonInput source='config' label='JSON Config' parse={false}/>
  */
 export const JsonInput = (props) => {
-  const { validate = [], 
-    errortext = DEFAULT_ERRORTEXT, 
-    fullWidth = true, 
-    resettable = false, 
-    multiline = true, 
+  const { validate = [],
+    errortext = DEFAULT_ERRORTEXT,
+    fullWidth = true,
+    resettable = false,
+    multiline = true,
     parse = true,
-     ...rest } = props;
+    ...rest } = props;
   const errorobj = { message: errortext };
   const validateJSON = (value) => {
     if (!value || typeof value === 'object')
@@ -56,7 +69,7 @@ export const JsonInput = (props) => {
     multiline: multiline,
     validate: validate,
     format: formatJSON,
-  }; 
+  };
   if (parse) cProps.parse = parseFunction;
   validate.push(validateJSON);
   return (
