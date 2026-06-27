@@ -14,7 +14,7 @@ const parseFunction = (json) => {
 
 /**
  *
- * `JsonInput` validates if the entered value is JSON or not. If entered value is not a invalid JSON, `JsonInput` will throw an error.
+ * `JsonInput` validates if the entered value is JSON or not. If entered value is not an invalid JSON, `JsonInput` will throw an error.
  * Default error message is: `Invalid JSON` and can be overridden using `errortext` prop.
  *
  * @example
