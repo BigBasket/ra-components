@@ -13,7 +13,7 @@ import {
  * @example
  * <UpdateButton resource='posts' label='Approve' source='is_approved'/>
  *
- * In the above example, `is_approved` column of the curret record within`posts`, will be updated to`true`.
+ * In the above example, `is_approved` column of the current record within`posts`, will be updated to`true`.
  *
  * You can pass value prop to update the source to a specific value, instead of`true`.
  * @example
@@ -25,9 +25,9 @@ import {
  * const data = {is_approved:true,post_status:'APPROVED'};
  * <UpdateButton resource='posts' label='Approve' data={data} />
  *
- * Note: You can send either source or data.if source is there, data is ignored.
+ * Note: You can send either source or data. If source is there, data is ignored.
  *
- * By default, `UpdateButton` merges the un - updated data and updated data and sends the whole object.If your API expects only updated data, you can turn this off using merge prop.
+ * By default, `UpdateButton` merges the un - updated data and updated data and sends the whole object. If your API expects only updated data, you can turn this off using merge prop.
  * @example
  * const data = {is_approved:true,post_status:'APPROVED'};
  * <UpdateButton resource='posts' label='Approve' data={data} merge={false}/>
